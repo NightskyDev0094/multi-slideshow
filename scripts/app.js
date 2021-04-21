@@ -1,5 +1,9 @@
 var options = {
-  contents: [],
+  contents: [
+    "https://images.unsplash.com/photo-1538991383142-36c4edeaffde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1351&q=80",
+    "https://images.unsplash.com/photo-1536782376847-5c9d14d97cc0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1356&q=80",
+    "https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+  ],
   duration: 3,
   captain: "Hello World",
   captainFontSize: 28,
@@ -8,6 +12,43 @@ var options = {
   descritpionFontSize: 12
 };
 
-function onload() {
-  myWindowGlobalLibraryName.createSlideShow(options);
+// function onload() {
+//   // var ele = document.querySelector("iframe");
+//   // console.log(ele.scrollHeight, ele.scrollWidth);
+//   // var h = ele.contentWindow;
+//   myWindowGlobalLibraryName.createSlideShow(options);
+// }
+
+var slideIndex = 1;
+showSlides(slideIndex);
+
+function plusSlides(n) {
+  showSlides((slideIndex += n));
+}
+
+// function currentSlide(n) {
+//   showSlides(slideIndex = n);
+// }
+
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("clip");
+  console.log(slides);
+  console.log(slides.length);
+  var dots = document.getElementsByClassName("dot");
+  if (n > slides.length) {
+    slideIndex = 1;
+  }
+  if (n < 1) {
+    slideIndex = slides.length;
+  }
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+    console.log(slides[i].style.display);
+  }
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex - 1].style.display = "block";
+  dots[slideIndex - 1].className += " active";
 }
