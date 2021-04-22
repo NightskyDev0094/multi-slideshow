@@ -36,6 +36,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
 
 function createContentList() {
   var sidebarContainer = document.querySelector(".sidebarContainer");
+  var addBtn = document.createElement("div");
   sidebarContainer.innerHTML = "";
 
   for (let i = 0; i < options.contents.length; i++) {
@@ -76,6 +77,10 @@ function createContentList() {
     contentItem.appendChild(trashIcon);
     sidebarContainer.appendChild(contentItem);
   }
+
+  addBtn.classList.add("btn", "addBtn");
+  addBtn.append("Add Element");
+  sidebarContainer.appendChild(addBtn);
 }
 
 function changeItem(i, isChange) {
@@ -147,7 +152,7 @@ function changeSlideShow(i) {
   options.descritpionFontSizes[i] = Number.parseInt(
     document.querySelector("#descriptionSetting").querySelector("input").value
   );
-  
+
   myWindowGlobalLibraryName.setSlideShowOptions(options);
 
   createContentList();

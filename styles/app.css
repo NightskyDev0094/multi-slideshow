@@ -101,13 +101,14 @@ hr.solid {
 .btn {
   border: none;
   color: white;
-  padding: 12px 120px;
+  padding: 12px 110px;
   font-size: 16px;
+  font-weight: bold;
   cursor: pointer;
 }
 
 .saveBtn {
-  width: 80%;
+  width: 90%;
   margin-top: 30px;
   box-sizing: border-box;
   position: absolute;
@@ -115,7 +116,17 @@ hr.solid {
   transform: translate(-50%);
   background-color: #4caf50;
 }
-.saveBtn:hover {
+
+.addBtn {
+  width: 90%;
+  margin-top: 30px;
+  box-sizing: border-box;
+  font-weight: bold;
+  background-color: #4caf50;
+}
+
+.saveBtn:hover,
+.addBtn:hover {
   background-color: #46a049;
 }
 
