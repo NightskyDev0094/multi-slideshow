@@ -7,16 +7,15 @@ var options = {
   duration: 3,
   captain: "Hello World",
   captainFontSize: 28,
-  description:
-    ["Lorem ipsum dolor sit amet, consectetur adipiscing elit.", 
+  description: [
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     "Integer lacinia dui lectus.",
-    "Donec scelerisque ipsum diam, ac mattis orci pellentesque eget."],
+    "Donec scelerisque ipsum diam, ac mattis orci pellentesque eget."
+  ],
   descritpionFontSize: 12
 };
 
 var slideIndex = 1;
 document.addEventListener("DOMContentLoaded", function(e) {
-  console.log('start')
   myWindowGlobalLibraryName.createSlideShow(options);
-  // showSlides(slideIndex);
 });

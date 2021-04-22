@@ -18,6 +18,7 @@
 }
 
 iframe {
+  border: 0;
   /* -ms-transform: scale(0.25);
   -moz-transform: scale(0.25);
   -o-transform: scale(0.25);

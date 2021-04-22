@@ -3,7 +3,7 @@
 
   function multiSlideShow() {
     var _multiSlideShow = {};
-    var captainTimer;
+    var capainTimer;
     var descriptionTimer;
 
     _multiSlideShow.createSlideShow = function(option) {
@@ -72,14 +72,14 @@
 
   // Click prev or push
   this.plusSlides = function(n) {
-    clearTimeout(captainTimer);
+    clearTimeout(capainTimer);
     clearTimeout(descriptionTimer);
     fadeSlide((slideIndex += n));
   };
 
   // Click bottom button
   this.currentSlide = function(n) {
-    clearTimeout(captainTimer);
+    clearTimeout(capainTimer);
     clearTimeout(descriptionTimer);
     fadeSlide((slideIndex = n));
   };
@@ -132,7 +132,7 @@
     images[slideIndex - 1].style.display = "block";
     // captains[slideIndex - 1].style.opacity = 1;
     // descriptions[slideIndex - 1].style.opacity = 1;
-    captainTimer = setTimeout(() => {
+    capainTimer = setTimeout(() => {
       captains[slideIndex - 1].style.display = "block";
     }, 600);
     descriptionTimer = setTimeout(() => {
