@@ -3,6 +3,8 @@
 
   function multiSlideShow() {
     var _multiSlideShow = {};
+    var captainTimer;
+    var descriptionTimer;
 
     _multiSlideShow.createSlideShow = function(option) {
       var slideShow = document.querySelector(".slideshow-container");
@@ -70,11 +72,15 @@
 
   // Click prev or push
   this.plusSlides = function(n) {
+    clearTimeout(captainTimer);
+    clearTimeout(descriptionTimer);
     fadeSlide((slideIndex += n));
   };
 
   // Click bottom button
   this.currentSlide = function(n) {
+    clearTimeout(captainTimer);
+    clearTimeout(descriptionTimer);
     fadeSlide((slideIndex = n));
   };
 
@@ -84,18 +90,8 @@
     var slides = document.getElementsByClassName("slide");
     var images = document.getElementsByClassName("imageClip");
     var captains = document.getElementsByClassName("captain");
-    let descriptions = document.querySelectorAll(".description");
+    var descriptions = document.querySelectorAll(".description");
     var dots = document.getElementsByClassName("dot");
-
-    for (let i = 0; i < images.length; i++)
-      images[i].animate({ opacity: [0.4, 1] }, 1500);
-    for (let i = 0; i < captains.length; i++)
-      captains[i].animate({ opacity: [0, 1] }, { duration: 1000, delay: 1000 });
-    for (let i = 0; i < descriptions.length; i++)
-      descriptions[i].animate(
-        [{ transform: "translate(-100%, 0)" }, { transform: "none" }],
-        { duration: 1000, delay: 1000 }
-      );
 
     if (n > images.length) {
       slideIndex = 1;
@@ -103,21 +99,46 @@
     if (n < 1) {
       slideIndex = images.length;
     }
+
+    // for (let i = 0; i < images.length; i++)
+    images[slideIndex - 1].animate({ opacity: [0.4, 1] }, 1500);
+    // for (let i = 0; i < captains.length; i++)
+    captains[slideIndex - 1].animate(
+      { opacity: [0, 1] },
+      { duration: 1000, delay: 500 }
+    );
+    // for (let i = 0; i < descriptions.length; i++)
+    descriptions[slideIndex - 1].animate(
+      [
+        { transform: "translate(-200%, 0)" },
+        { transform: "translate(-100%, 0)" },
+        { transform: "none" }
+      ],
+      { duration: 1000, delay: 500 }
+    );
+
     for (i = 0; i < images.length; i++) {
       slides[i].style.display = "none";
       images[i].style.display = "none";
-      captains[i].style.opacity = 0;
-      descriptions[i].style.opacity = 0;
+      // captains[i].style.opacity = 0;
+      // descriptions[i].style.opacity = 0;
+      captains[i].style.display = "none";
+      descriptions[i].style.display = "none";
     }
     for (i = 0; i < dots.length; i++) {
       dots[i].className = dots[i].className.replace(" active", "");
     }
     slides[slideIndex - 1].style.display = "block";
     images[slideIndex - 1].style.display = "block";
-    setTimeout(() => {
-      captains[slideIndex - 1].style.opacity = 1;
-      descriptions[slideIndex - 1].style.opacity = 1;
-    }, 1200);
+    // captains[slideIndex - 1].style.opacity = 1;
+    // descriptions[slideIndex - 1].style.opacity = 1;
+    captainTimer = setTimeout(() => {
+      captains[slideIndex - 1].style.display = "block";
+    }, 600);
+    descriptionTimer = setTimeout(() => {
+      descriptions[slideIndex - 1].style.display = "block";
+    }, 600);
+
     dots[slideIndex - 1].className += " active";
   };
 
