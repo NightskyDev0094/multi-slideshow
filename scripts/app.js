@@ -43,11 +43,12 @@ function showSlides(n) {
   for (let i = 0; i < images.length; i++)
     images[i].animate({ opacity: [0.4, 1] }, 1500);
   for (let i = 0; i < captains.length; i++)
-    captains[i].animate({ opacity: [0.2, 1] }, { duration: 500, delay: 1500 });
+    captains[i].animate({ opacity: [0, 1] }, { duration: 1000, delay: 1500 });
   for (let i = 0; i < descriptions.length; i++)
     descriptions[i].animate(
-      [{ transform: "translate(0, 300%)" }, { transform: "none" }],
-      1500
+      // [{ transform: "translate(0, 300%)" }, { transform: "none" }],
+      [{ transform: "translate(-100%, 0)" }, { transform: "none" }],
+      { duration: 1000, delay: 1500 }
     );
 
   if (n > images.length) {
@@ -69,7 +70,7 @@ function showSlides(n) {
   images[slideIndex - 1].style.display = "block";
   setTimeout(() => {
     captains[slideIndex - 1].style.opacity = 1;
+    descriptions[slideIndex - 1].style.opacity = 1;
   }, 1600);
-  descriptions[slideIndex - 1].style.opacity = 1;
   dots[slideIndex - 1].className += " active";
 }

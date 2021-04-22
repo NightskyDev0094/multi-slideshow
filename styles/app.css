@@ -15,7 +15,6 @@ body {
 }
 .sidebar {
   width: 25%;
-  overflow: hidden;
   background-color: #eff2f4;
 }
 .slideShowPanel {
@@ -30,7 +29,13 @@ body {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.slide .imageClip {
+.slide {
+  position: relative;
+  width: 900px;
+  height: 500px;
+  overflow: hidden;
+}
+.imageClip {
   width: 900px;
   height: 500px;
 }
