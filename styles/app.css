@@ -32,11 +32,81 @@ body {
 }
 
 .contentItem {
-  width: 80%;
-  height: 20px;
+  width: 90%;
+  height: 40px;
   margin-top: 20px;
+  border-radius: 3px;
   background-color: white;
-  box-shadow: 0 0 2px #cac2c2;
+  box-shadow: 0 2px 1px -2px #a0abbe;
+  border-bottom: 1px solid #bec6ca;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 8px;
+}
+
+/* --------------------------------------   content option   -------------------------------- */
+
+.contentOption {
+  width: 100%;
+  /* display: none; */
+}
+
+.contentOptionToolbar {
+  background-color: #e0e6ea;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+#urlType {
+  display: flex;
+  margin: 20px;
+}
+
+#itemUrl,
+#captainSetting,
+#descriptionSetting {
+  margin: 20px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+hr.solid {
+  border-top: 3px solid rgb(255, 255, 255);
+  margin: 0px 20px;
+}
+
+.btn {
+  border: none;
+  color: white;
+  padding: 12px 120px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.saveBtn {
+  width: 80%;
+  box-sizing: border-box;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  background-color: #4caf50;
+}
+.saveBtn:hover {
+  background-color: #46a049;
 }
 
 /* ------------------------   tab   --------------------------- */
@@ -44,6 +114,7 @@ body {
 .tabbed {
   overflow-x: hidden; /* so we could easily hide the radio inputs */
   padding-bottom: 16px;
+  display: none;
 }
 
 .tabbed [type="radio"] {
@@ -57,19 +128,21 @@ body {
   list-style: none;
   padding: 0;
   margin: 0;
-  border-bottom: 1px solid #ccc;
+  background-color: #e0e6ea;
+  border-bottom: 1px solid #b3c9d8;
 }
 .tab > label {
   display: block;
   margin-bottom: -1px;
   padding: 10px 15px;
-  border: 1px solid #ccc;
-  background: #eee;
+  border: 1px solid #b3c9d8;
+  background: #e0e6ea;
   color: #666;
   font-size: 16px;
   font-weight: 600;
   letter-spacing: 1px;
   cursor: pointer;
+  font-family: none;
   transition: all 0.3s;
 }
 .tab:hover label {
@@ -79,7 +152,6 @@ body {
 
 .tab-content {
   width: 100%;
-  height: 100%;
   display: none;
   color: #777;
   margin-top: 10px;
@@ -88,7 +160,6 @@ body {
 .sidebarContainer {
   position: relative;
   width: 100%;
-  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;

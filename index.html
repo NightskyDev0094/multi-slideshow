@@ -5,6 +5,11 @@
     <script src="./scripts/slideshow.js"></script>
     <link rel="stylesheet" type="text/css" href="./styles/app.css" />
     <link rel="stylesheet" type="text/css" href="./styles/slideshow.css" />
+
+    <script
+      src="https://kit.fontawesome.com/aa527429c7.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
 
   <body>
@@ -21,26 +26,58 @@
             <li class="tab"><label for="tab2">Contents</label></li>
             <li class="tab"><label for="tab3">Options</label></li>
           </ul>
+          <div class="tab-content"></div>
 
           <div class="tab-content">
-            <div class="sidebarContainer">
-              <div class="contentItem"></div>
-              <div class="contentItem"></div>
-            </div>
+            <div class="sidebarContainer"></div>
           </div>
 
-          <div class="tab-content">
-            <div class="sidebarContainer">
-              <div class="contentItem"></div>
-              <div class="contentItem"></div>
+          <div class="tab-content"></div>
+        </div>
+        <div class="contentOption">
+          <div class="contentOptionToolbar">
+            <div style="cursor: pointer" onclick="backToContent()">
+              <i class="fas fa-chevron-left fa-sm" style="color: blue"></i>
+              <span style="color: blue; margin: 0px 10px;"><b>Back</b></span>
             </div>
           </div>
-
-          <div class="tab-content">
-            <div class="sidebarContainer">
-              <div class="contentItem"></div>
-              <div class="contentItem"></div>
+          <div class="contentOptionContainer">
+            <div id="urlType">
+              <input type="radio" id="image" name="url" value="Image" checked />
+              <label for="image" style="margin-right: 30px">Image</label><br />
+              <input type="radio" id="other" name="url" value="Other" />
+              <label for="other">Http</label><br />
             </div>
+            <hr class="solid" />
+            <div id="itemUrl">
+              <label for="">Url</label><br />
+              <input
+                type="text"
+                style="width: 100%; height: 25px;margin-top: 5px;"
+              />
+            </div>
+            <hr class="solid" />
+            <div id="captainSetting">
+              <label>Captain</label><br />
+              <input
+                type="text"
+                style="width: 100%; height: 25px; margin-bottom: 15px;margin-top: 5px;"
+              /><br />
+              <label for="" style="margin-right: 10px">Font Size</label>
+              <input type="number" style="width: 30px; height: 25px" />
+            </div>
+            <hr class="solid" />
+            <div id="descriptionSetting">
+              <label>Description</label><br />
+              <textarea
+                rows="4"
+                style="width: 100%; resize: none; margin-bottom: 15px;margin-top: 5px;"
+              ></textarea
+              ><br />
+              <label for="" style="margin-right: 10px">Font Size</label>
+              <input type="number" style="width: 30px; height: 25px" />
+            </div>
+            <button class="btn saveBtn">Save</button>
           </div>
         </div>
       </div>

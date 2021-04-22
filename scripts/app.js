@@ -18,4 +18,52 @@ var options = {
 var slideIndex = 1;
 document.addEventListener("DOMContentLoaded", function(e) {
   myWindowGlobalLibraryName.createSlideShow(options);
+  createContentList();
 });
+
+function createContentList() {
+  var sidebarContainer = document.querySelector(".sidebarContainer");
+
+  for (let i = 0; i < options.contents.length; i++) {
+    var contentItem = document.createElement("div");
+    var innerContent = document.createElement("div");
+    var gridIcon = document.createElement("i");
+    var trashIcon = document.createElement("i");
+    var imageIcon = document.createElement("i");
+    var title = document.createElement("div");
+    var b = document.createElement("b");
+
+    gridIcon.classList.add("fas", "fa-grip-vertical", "fa-sm");
+    gridIcon.style.color = "black";
+    imageIcon.classList.add("far", "fa-image", "fa-2x");
+    imageIcon.style.margin = "0px 10px";
+    title.style.color = "black";
+    b.append("Image " + (i + 1));
+    title.append(b);
+    trashIcon.classList.add("fas", "fa-trash-alt", "fa-sm");
+    trashIcon.style.cursor = "pointer";
+    innerContent.style.display = "flex";
+    innerContent.style.alignItems = "center";
+    innerContent.style.cursor = "pointer";
+    innerContent.setAttribute("onclick", "changeItem(" + i + ")");
+    contentItem.classList.add("contentItem");
+
+    innerContent.appendChild(gridIcon);
+    innerContent.appendChild(imageIcon);
+    innerContent.appendChild(title);
+    contentItem.appendChild(innerContent);
+    contentItem.appendChild(trashIcon);
+    sidebarContainer.appendChild(contentItem);
+  }
+}
+
+function changeItem(i) {
+  document.querySelector(".tabbed").style.display = "none";
+  document.querySelector(".contentOption").style.display = "block";
+  console.log(i);
+}
+
+function backToContent() {
+  document.querySelector(".tabbed").style.display = "block";
+  document.querySelector(".contentOption").style.display = "none";
+}
