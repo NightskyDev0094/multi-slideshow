@@ -1,41 +1,65 @@
 (function(window) {
-  var slideIndex = 1;
-
   function multiSlideShow() {
+    var slideIndex = 1;
     var _multiSlideShow = {};
+    var options;
     var capainTimer;
     var descriptionTimer;
 
-    _multiSlideShow.createSlideShow = function(option) {
+    _multiSlideShow.setSlideShowOptions = function(values) {
+      var slides = document.querySelectorAll(".slide");
+      var images = document.querySelectorAll(".imageClip");
+      var captains = document.querySelectorAll(".captain");
+      var descriptions = document.querySelectorAll(".description");
+
+      if (!slides && !images && !captains && !descriptions) {
+        slides[slideIndex - 1].style.display = "none";
+        images[slideIndex - 1].style.display = "none";
+        captains[slideIndex - 1].style.display = "none";
+        descriptions[slideIndex - 1].style.display = "none";
+      }
+
+      options = values;
+      slideIndex = 1;
+      createSlideShow();
+    };
+
+    this.createSlideShow = function() {
       var slideShow = document.querySelector(".slideshow-container");
       var panel = document.createElement("div");
       var prev = document.createElement("a");
       var next = document.createElement("a");
       var dotContatiner = document.createElement("div");
+      var img;
 
-      panel.style.height = "100%";
-      panel.style.display = "flex";
-      panel.style.position = "absolute";
+      slideShow.innerHTML = "";
+      panel.classList.add("panel");
+      // panel.style.height = "100%";
+      // panel.style.display = "flex";
+      // panel.style.position = "absolute";
 
       for (let i = 0; i < options.contents.length; i++) {
         var slide = document.createElement("div");
         var textArea = document.createElement("div");
         var captain = document.createElement("div");
         var description = document.createElement("div");
-        var img = document.createElement("img");
         var dot = document.createElement("span");
-
         slide.classList.add("slide");
+        if (options.fileType[i] == "image") {
+          img = document.createElement("img");
+        } else img = document.createElement("iframe");
         img.setAttribute("src", options.contents[i]);
         img.classList.add("imageClip");
         textArea.classList.add("text-area");
         captain.classList.add("captain");
-        captain.append(options.captain);
+        captain.style.fontSize = options.captainFontSizes[i] + "px";
+        captain.append(options.captains[i]);
         description.classList.add("description");
+        description.style.fontSize = options.descritpionFontSizes[i] + "px";
 
         var sub = "";
-        for (let i = 0; i < options.description.length; i++) {
-          sub = sub + options.description[i] + "<br />";
+        for (let j = 0; j < options.descriptions[i].length; j++) {
+          sub = sub + options.descriptions[i][j] + "<br />";
         }
         description.innerHTML = sub;
         dot.classList.add("dot");
@@ -87,12 +111,13 @@
   // fade effect
   this.fadeSlide = function(n) {
     var i;
-    var slides = document.getElementsByClassName("slide");
-    var images = document.getElementsByClassName("imageClip");
-    var captains = document.getElementsByClassName("captain");
+    var slides = document.querySelectorAll(".slide");
+    var images = document.querySelectorAll(".imageClip");
+    var captains = document.querySelectorAll(".captain");
     var descriptions = document.querySelectorAll(".description");
-    var dots = document.getElementsByClassName("dot");
+    var dots = document.querySelectorAll(".dot");
 
+    slideIndex = n;
     if (n > images.length) {
       slideIndex = 1;
     }
@@ -130,8 +155,6 @@
     }
     slides[slideIndex - 1].style.display = "block";
     images[slideIndex - 1].style.display = "block";
-    // captains[slideIndex - 1].style.opacity = 1;
-    // descriptions[slideIndex - 1].style.opacity = 1;
     capainTimer = setTimeout(() => {
       captains[slideIndex - 1].style.display = "block";
     }, 600);

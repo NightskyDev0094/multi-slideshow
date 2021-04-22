@@ -33,7 +33,7 @@ body {
 
 .contentItem {
   width: 90%;
-  height: 40px;
+  height: 50px;
   margin-top: 20px;
   border-radius: 3px;
   background-color: white;
@@ -50,7 +50,7 @@ body {
 
 .contentOption {
   width: 100%;
-  /* display: none; */
+  display: none;
 }
 
 .contentOptionToolbar {
@@ -67,10 +67,19 @@ body {
   margin: 20px;
 }
 
-#itemUrl,
+#itemUrl {
+  margin: 20px 20px 5px 20px;
+}
+
 #captainSetting,
 #descriptionSetting {
   margin: 20px;
+}
+
+.inputText {
+  width: 100%;
+  margin-top: 5px;
+  margin-bottom: 15px;
 }
 
 input::-webkit-outer-spin-button,
@@ -99,6 +108,7 @@ hr.solid {
 
 .saveBtn {
   width: 80%;
+  margin-top: 30px;
   box-sizing: border-box;
   position: absolute;
   left: 50%;
@@ -109,12 +119,17 @@ hr.solid {
   background-color: #46a049;
 }
 
+.numberInput {
+  width: 50px;
+  height: 25px;
+  text-align: center;
+}
+
 /* ------------------------   tab   --------------------------- */
 
 .tabbed {
   overflow-x: hidden; /* so we could easily hide the radio inputs */
   padding-bottom: 16px;
-  display: none;
 }
 
 .tabbed [type="radio"] {
