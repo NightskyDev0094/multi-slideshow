@@ -98,7 +98,7 @@
         console.log("on");
         fadeSlide((slideIndex += 1));
       }, options.displayDuration * 1000);
-    } else if (autoPlayTimer) {
+    } else {
       clearInterval(autoPlayTimer);
     }
   };
