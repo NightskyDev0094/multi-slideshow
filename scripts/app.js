@@ -7,6 +7,7 @@ var options = {
   fileType: ["image", "other", "image"],
   captains: ["1. Hello World", "2. Hello World", "3. Hello World"],
   captainFontSizes: [24, 24, 24],
+  captainColor: "#ffffff",
   descriptions: [
     [
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
@@ -25,14 +26,16 @@ var options = {
     ]
   ],
   descritpionFontSizes: [15, 15, 15],
-  autoPlay: true,
+  descriptionColor: "#dccccc",
+  autoPlay: false,
   displayDuration: 3,
   backgroundDuration: 1.5,
   backgroundDelay: 0,
   captainDuration: 1,
   captainDelay: 0.5,
   descriptionDuration: 1,
-  descriptionDelay: 0.5
+  descriptionDelay: 0.5,
+  textPosition: "center"
 };
 
 var slideIndex = 1;
@@ -241,6 +244,9 @@ function getSlideEffectOffect() {
   document.querySelector(
     "#descriptionDelay"
   ).value = this.options.descriptionDelay;
+  document.querySelector("#captainColor").value = options.captainColor;
+  document.querySelector("#descriptionColor").value = options.descriptionColor;
+  document.querySelector("#textPosition").value = options.textPosition;
 }
 
 function setEffectOption() {
@@ -264,7 +270,18 @@ function setEffectOption() {
   this.options.descriptionDelay = document.querySelector(
     "#descriptionDelay"
   ).value;
+  this.options.textPosition = document.querySelector("#textPosition").value;
+  console.log(options);
 
   document.querySelector("#tab2").checked = true;
   myWindowGlobalLibraryName.setSlideShowOptions(options);
+}
+
+function changeCaptainColor(event) {
+  options.captainColor = event.target.value;
+}
+
+function changeDescriptionColor(event) {
+  options.descriptionColor = event.target.value;
+  console.log(options);
 }

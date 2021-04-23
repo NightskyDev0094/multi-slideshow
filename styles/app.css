@@ -291,3 +291,20 @@ input:checked + .slider:before {
   -ms-transform: translateX(14px);
   transform: translateX(14px);
 }
+
+#colorPicker {
+  width: 30px;
+  height: 30px;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid grey;
+}
+
+[type='color'] {
+  border: 0;
+  padding: 0;
+  width: 200%;
+  height: 200%;
+  cursor: pointer;
+  transform: translate(-25%, -25%);
+}

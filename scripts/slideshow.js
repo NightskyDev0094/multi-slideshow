@@ -3,9 +3,10 @@
     var slideIndex = 1;
     var _multiSlideShow = {};
     var options;
-    var capainTimer;
-    var descriptionTimer;
-    var autoPlayTimer;
+    this.waitCaptainTimer = 0;
+    // var capainTimer;
+    // var descriptionTimer;
+    // var autoPlayTimer;
 
     _multiSlideShow.setSlideShowOptions = function(values) {
       var slides = document.querySelectorAll(".slide");
@@ -48,12 +49,15 @@
         } else img = document.createElement("iframe");
         img.setAttribute("src", options.contents[i]);
         img.classList.add("imageClip");
-        textArea.classList.add("text-area");
+        textArea.classList.add("textArea");
+        textArea.classList.add(options.textPosition);
         captain.classList.add("captain");
         captain.style.fontSize = options.captainFontSizes[i] + "px";
         captain.append(options.captains[i]);
+        captain.style.color = options.captainColor;
         description.classList.add("description");
         description.style.fontSize = options.descritpionFontSizes[i] + "px";
+        description.style.color = options.descriptionColor;
 
         var sub = "";
         for (let j = 0; j < options.descriptions[i].length; j++) {
@@ -86,6 +90,7 @@
       slideShow.appendChild(dotContatiner);
 
       fadeSlide(slideIndex);
+      killTimer();
       autoPlay();
     };
 
@@ -94,29 +99,36 @@
 
   this.autoPlay = function() {
     if (options.autoPlay) {
-      autoPlayTimer = setInterval(() => {
-        console.log("on");
+      this.autoPlayTimer = setInterval(() => {
         fadeSlide((slideIndex += 1));
       }, options.displayDuration * 1000);
     } else {
-      clearInterval(autoPlayTimer);
+      clearInterval(this.autoPlayTimer);
     }
+  };
+
+  this.killTimer = function() {
+    clearInterval(this.autoPlayTimer);
   };
 
   // Click prev or push
   this.plusSlides = function(n) {
-    clearTimeout(capainTimer);
-    clearTimeout(descriptionTimer);
-    clearInterval(autoPlayTimer);
+    var descriptions = document.querySelectorAll(".description");
+    console.log(descriptions[slideIndex - 1].style.opacity);
+    clearTimeout(this.capainTimer);
+    clearTimeout(this.descriptionTimer);
+    clearTimeout(this.waitCaptainTimer);
+    clearInterval(this.autoPlayTimer);
     autoPlay();
     fadeSlide((slideIndex += n));
   };
 
   // Click bottom button
   this.currentSlide = function(n) {
-    clearTimeout(capainTimer);
-    clearTimeout(descriptionTimer);
-    clearInterval(autoPlayTimer);
+    clearTimeout(this.capainTimer);
+    clearTimeout(this.descriptionTimer);
+    clearTimeout(this.waitCaptainTimer);
+    clearInterval(this.autoPlayTimer);
     autoPlay();
     fadeSlide((slideIndex = n));
   };
@@ -138,7 +150,6 @@
       slideIndex = images.length;
     }
 
-    // for (let i = 0; i < images.length; i++)
     images[slideIndex - 1].animate(
       { opacity: [0.4, 1] },
       {
@@ -146,32 +157,11 @@
         delay: options.backgroundDelay * 1000
       }
     );
-    // for (let i = 0; i < captains.length; i++)
-    captains[slideIndex - 1].animate(
-      { opacity: [0, 1] },
-      {
-        duration: options.captainDuration * 1000,
-        delay: options.captainDelay * 1000
-      }
-    );
-    // for (let i = 0; i < descriptions.length; i++)
-    descriptions[slideIndex - 1].animate(
-      [
-        { transform: "translate(-200%, 0)" },
-        { transform: "translate(-100%, 0)" },
-        { transform: "none" }
-      ],
-      {
-        duration: options.descriptionDuration * 1000,
-        delay: options.descriptionDelay * 1000
-      }
-    );
+    setTextEffect(slideIndex, captains, descriptions);
 
     for (i = 0; i < images.length; i++) {
       slides[i].style.display = "none";
       images[i].style.display = "none";
-      // captains[i].style.opacity = 0;
-      // descriptions[i].style.opacity = 0;
       captains[i].style.display = "none";
       descriptions[i].style.display = "none";
     }
@@ -181,17 +171,75 @@
     slides[slideIndex - 1].style.display = "block";
     images[slideIndex - 1].style.display = "block";
     if (options.captainDelay != 0) {
-      capainTimer = setTimeout(() => {
+      this.capainTimer = setTimeout(() => {
         captains[slideIndex - 1].style.display = "block";
       }, options.captainDelay * 1000 + 100);
     }
     if (options.descriptionDelay != 0) {
-      descriptionTimer = setTimeout(() => {
-        descriptions[slideIndex - 1].style.display = "block";
-      }, options.descriptionDelay * 1000 + 100);
+      if (
+        !options.textPosition.toLowerCase().includes("left") &&
+        !options.textPosition.toLowerCase().includes("right")
+      ) {
+        this.waitCaptainTimer = setTimeout(() => {
+          descriptions[slideIndex - 1].style.opacity = 0;
+          descriptions[slideIndex - 1].style.display = "block";
+        }, options.captainDelay * 1000 + 100);
+        this.descriptionTimer = setTimeout(() => {
+          descriptions[slideIndex - 1].style.opacity = 1;
+        }, options.descriptionDuration * 1000 + options.captainDelay * 1000 + 100);
+      } else {
+        this.descriptionTimer = setTimeout(() => {
+          descriptions[slideIndex - 1].style.display = "block";
+          descriptions[slideIndex - 1].style.opacity = 0;
+          descriptions[slideIndex - 1].style.opacity = 1;
+        }, options.descriptionDelay * 1000 + 100);
+      }
     }
 
     dots[slideIndex - 1].className += " active";
+  };
+
+  this.setTextEffect = function(slideIndex, captains, descriptions) {
+    captains[slideIndex - 1].animate(
+      { opacity: [0, 1] },
+      {
+        duration: options.captainDuration * 1000,
+        delay: options.captainDelay * 1000
+      }
+    );
+    if (options.textPosition.toLowerCase().includes("left")) {
+      descriptions[slideIndex - 1].animate(
+        [
+          { transform: "translate(-200%, 0)" },
+          { transform: "translate(-100%, 0)" },
+          { transform: "none" }
+        ],
+        {
+          duration: options.descriptionDuration * 1000,
+          delay: options.descriptionDelay * 1000
+        }
+      );
+    } else if (options.textPosition.toLowerCase().includes("right")) {
+      descriptions[slideIndex - 1].animate(
+        [
+          { transform: "translate(200%, 0)" },
+          { transform: "translate(100%, 0)" },
+          { transform: "none" }
+        ],
+        {
+          duration: options.descriptionDuration * 1000,
+          delay: options.descriptionDelay * 1000
+        }
+      );
+    } else {
+      descriptions[slideIndex - 1].animate(
+        { opacity: [0, 1] },
+        {
+          duration: options.descriptionDuration * 1000,
+          delay: options.captainDuration * 1000 + options.captainDelay * 1000
+        }
+      );
+    }
   };
 
   if (typeof window.myWindowGlobalLibraryName === "undefined") {

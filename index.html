@@ -18,8 +18,8 @@
       <div class="sidebar">
         <div class="tabbed" style="height: 100%">
           <input type="radio" id="tab1" name="css-tabs" />
-          <input type="radio" id="tab2" name="css-tabs" checked />
-          <input type="radio" id="tab3" name="css-tabs" />
+          <input type="radio" id="tab2" name="css-tabs" />
+          <input type="radio" id="tab3" name="css-tabs" checked />
 
           <ul class="tabs">
             <li class="tab"><label for="tab1">Effects</label></li>
@@ -85,7 +85,18 @@
                   />
                 </div>
               </div>
-              <h3 style="margin-top: 30px">Captain</h3>
+              <div
+                style="margin-top: 30px;display: flex;justify-content: space-between;"
+              >
+                <h3 style="margin: 0">Captain</h3>
+                <div id="colorPicker" style="margin-right: 10px">
+                  <input
+                    type="color"
+                    id="captainColor"
+                    onchange="changeCaptainColor(event)"
+                  />
+                </div>
+              </div>
               <div class="separate">
                 <label style="margin-right: 30px">Duration</label>
                 <div style="display: flex">
@@ -112,7 +123,18 @@
                   />
                 </div>
               </div>
-              <h3 style="margin-top: 30px">Description</h3>
+              <div
+                style="margin-top: 30px;display: flex;justify-content: space-between;"
+              >
+                <h3 style="margin: 0">Description</h3>
+                <div id="colorPicker" style="margin-right: 10px">
+                  <input
+                    type="color"
+                    id="descriptionColor"
+                    onchange="changeDescriptionColor(event)"
+                  />
+                </div>
+              </div>
               <div class="separate">
                 <label style="margin-right: 30px">Duration</label>
                 <div style="display: flex">
@@ -138,6 +160,21 @@
                     onChange="this.value=Math.max(Math.min(this.value, this.max), this.min)"
                   />
                 </div>
+              </div>
+              <h3 style="margin-top: 30px">Position</h3>
+              <div class="separate">
+                <label style="margin-right: 30px">Text</label>
+                <select id="textPosition">
+                  <option value="top">Top</option>
+                  <option value="right">Right</option>
+                  <option value="bottom">Bottom</option>
+                  <option value="left">Left</option>
+                  <option value="center">Center</option>
+                  <option value="topLeft">Top Left</option>
+                  <option value="topRight">Top Right</option>
+                  <option value="bottomLeft">Bottom Left</option>
+                  <option value="bottomRight">Bottom Right</option>
+                </select>
               </div>
             </div>
             <div
