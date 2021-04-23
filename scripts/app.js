@@ -37,7 +37,7 @@ var options = {
 
 var slideIndex = 1;
 document.addEventListener("DOMContentLoaded", function(e) {
-  myWindowGlobalLibraryName.setSlideShowOptions(options);
+  // myWindowGlobalLibraryName.setSlideShowOptions(options);
   createContentList();
 });
 
@@ -216,4 +216,55 @@ function addSlide() {
   myWindowGlobalLibraryName.setSlideShowOptions(options);
   createContentList();
   backToContent();
+}
+
+function getSlideEffectOffect() {
+  if (options.autoPlay) document.querySelector("#autoPlay").checked = true;
+  else document.querySelector("#autoPlay").checked = false;
+
+  document.querySelector(
+    "#displayDuration"
+  ).value = this.options.displayDuration;
+  document.querySelector(
+    "#backgroundDuration"
+  ).value = this.options.backgroundDuration;
+  document.querySelector(
+    "#backgroundDelay"
+  ).value = this.options.backgroundDelay;
+  document.querySelector(
+    "#captainDuration"
+  ).value = this.options.captainDuration;
+  document.querySelector("#captainDelay").value = this.options.captainDelay;
+  document.querySelector(
+    "#descriptionDuration"
+  ).value = this.options.descriptionDuration;
+  document.querySelector(
+    "#descriptionDelay"
+  ).value = this.options.descriptionDelay;
+}
+
+function setEffectOption() {
+  options.autoPlay = document.querySelector("#autoPlay").checked;
+  this.options.displayDuration = document.querySelector(
+    "#displayDuration"
+  ).value;
+  this.options.backgroundDuration = document.querySelector(
+    "#backgroundDuration"
+  ).value;
+  this.options.backgroundDelay = document.querySelector(
+    "#backgroundDelay"
+  ).value;
+  this.options.captainDuration = document.querySelector(
+    "#captainDuration"
+  ).value;
+  this.options.captainDelay = document.querySelector("#captainDelay").value;
+  this.options.descriptionDuration = document.querySelector(
+    "#descriptionDuration"
+  ).value;
+  this.options.descriptionDelay = document.querySelector(
+    "#descriptionDelay"
+  ).value;
+
+  document.querySelector("#tab2").checked = true;
+  myWindowGlobalLibraryName.setSlideShowOptions(options);
 }

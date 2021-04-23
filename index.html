@@ -16,7 +16,7 @@
     <div class="header"></div>
     <div class="body">
       <div class="sidebar">
-        <div class="tabbed">
+        <div class="tabbed" style="height: 100%">
           <input type="radio" id="tab1" name="css-tabs" />
           <input type="radio" id="tab2" name="css-tabs" />
           <input type="radio" id="tab3" name="css-tabs" checked />
@@ -24,7 +24,9 @@
           <ul class="tabs">
             <li class="tab"><label for="tab1">Effects</label></li>
             <li class="tab"><label for="tab2">Contents</label></li>
-            <li class="tab"><label for="tab3">Options</label></li>
+            <li class="tab">
+              <label for="tab3" onclick="getSlideEffectOffect()">Options</label>
+            </li>
           </ul>
           <div class="tab-content"></div>
 
@@ -37,7 +39,7 @@
               <div class="separate" style=" margin-bottom: 30px">
                 <label style="margin-right: 30px">Enable Auto Slide</label>
                 <label class="switch" style="margin-right: 6px;">
-                  <input type="checkbox" checked />
+                  <input id="autoPlay" type="checkbox" checked />
                   <span class="slider"></span>
                 </label>
               </div>
@@ -47,6 +49,7 @@
                 </label>
                 <div style="display: flex;">
                   <input
+                    id="displayDuration"
                     type="number"
                     min="1"
                     max="5"
@@ -60,6 +63,7 @@
                 <label style="margin-right: 30px">Duration</label>
                 <div style="display: flex">
                   <input
+                    id="backgroundDuration"
                     type="number"
                     min="0"
                     max="5"
@@ -72,6 +76,7 @@
                 <label style="margin-right: 30px">Delay</label>
                 <div style="display: flex">
                   <input
+                    id="backgroundDelay"
                     type="number"
                     min="0"
                     max="5"
@@ -85,6 +90,7 @@
                 <label style="margin-right: 30px">Duration</label>
                 <div style="display: flex">
                   <input
+                    id="captainDuration"
                     type="number"
                     min="0"
                     max="5"
@@ -97,6 +103,7 @@
                 <label style="margin-right: 30px">Delay</label>
                 <div style="display: flex">
                   <input
+                    id="captainDelay"
                     type="number"
                     min="0"
                     max="5"
@@ -110,6 +117,7 @@
                 <label style="margin-right: 30px">Duration</label>
                 <div style="display: flex">
                   <input
+                    id="descriptionDuration"
                     type="number"
                     min="0"
                     max="5"
@@ -122,6 +130,7 @@
                 <label style="margin-right: 30px">Delay</label>
                 <div style="display: flex">
                   <input
+                    id="descriptionDelay"
                     type="number"
                     min="0"
                     max="5"
@@ -130,6 +139,9 @@
                   />
                 </div>
               </div>
+            </div>
+            <div id="optionFooter" style="height: 8%; background-color: #e0e6ea; position: relative">
+              <button class="btn optionBtn" onclick="setEffectOption()">Done</button>
             </div>
           </div>
         </div>
