@@ -35,7 +35,10 @@ var options = {
   captainDelay: 0.5,
   descriptionDuration: 1,
   descriptionDelay: 0.5,
-  textPosition: "center"
+  textPosition: "left",
+  navigationPosition: "bottom",
+  hasCaptain: true,
+  hasDescription: false
 };
 
 var slideIndex = 1;
@@ -222,8 +225,9 @@ function addSlide() {
 }
 
 function getSlideEffectOffect() {
-  if (options.autoPlay) document.querySelector("#autoPlay").checked = true;
-  else document.querySelector("#autoPlay").checked = false;
+  document.querySelector("#autoPlay").checked = options.autoPlay;
+  document.querySelector("#hasCaptain").checked = options.hasCaptain;
+  document.querySelector("#hasDescription").checked = options.hasDescription;
 
   document.querySelector(
     "#displayDuration"
@@ -247,10 +251,14 @@ function getSlideEffectOffect() {
   document.querySelector("#captainColor").value = options.captainColor;
   document.querySelector("#descriptionColor").value = options.descriptionColor;
   document.querySelector("#textPosition").value = options.textPosition;
+  document.querySelector("#navigationPosition").value =
+    options.navigationPosition;
 }
 
 function setEffectOption() {
   options.autoPlay = document.querySelector("#autoPlay").checked;
+  options.hasCaptain = document.querySelector("#hasCaptain").checked;
+  options.hasDescription = document.querySelector("#hasDescription").checked;
   this.options.displayDuration = document.querySelector(
     "#displayDuration"
   ).value;
@@ -271,7 +279,9 @@ function setEffectOption() {
     "#descriptionDelay"
   ).value;
   this.options.textPosition = document.querySelector("#textPosition").value;
-  console.log(options);
+  this.options.navigationPosition = document.querySelector(
+    "#navigationPosition"
+  ).value;
 
   document.querySelector("#tab2").checked = true;
   myWindowGlobalLibraryName.setSlideShowOptions(options);
@@ -283,5 +293,4 @@ function changeCaptainColor(event) {
 
 function changeDescriptionColor(event) {
   options.descriptionColor = event.target.value;
-  console.log(options);
 }

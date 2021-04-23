@@ -64,6 +64,7 @@
           sub = sub + options.descriptions[i][j] + "<br />";
         }
         description.innerHTML = sub;
+
         dot.classList.add("dot");
         dot.setAttribute("onclick", "currentSlide(" + (i + 1) + ")");
 
@@ -83,6 +84,7 @@
       next.setAttribute("onclick", "plusSlides(1)");
       next.innerHTML = "&#10095;";
       dotContatiner.classList.add("dot-container");
+      dotContatiner.classList.add(options.navigationPosition);
 
       slideShow.appendChild(panel);
       slideShow.appendChild(prev);
@@ -113,8 +115,6 @@
 
   // Click prev or push
   this.plusSlides = function(n) {
-    var descriptions = document.querySelectorAll(".description");
-    console.log(descriptions[slideIndex - 1].style.opacity);
     clearTimeout(this.capainTimer);
     clearTimeout(this.descriptionTimer);
     clearTimeout(this.waitCaptainTimer);
@@ -170,12 +170,13 @@
     }
     slides[slideIndex - 1].style.display = "block";
     images[slideIndex - 1].style.display = "block";
-    if (options.captainDelay != 0) {
+
+    if (options.captainDelay != 0 && options.hasCaptain) {
       this.capainTimer = setTimeout(() => {
         captains[slideIndex - 1].style.display = "block";
       }, options.captainDelay * 1000 + 100);
     }
-    if (options.descriptionDelay != 0) {
+    if (options.descriptionDelay != 0 && options.hasDescription) {
       if (
         !options.textPosition.toLowerCase().includes("left") &&
         !options.textPosition.toLowerCase().includes("right")
@@ -207,6 +208,8 @@
         delay: options.captainDelay * 1000
       }
     );
+
+    // if (options.hasDescription) {
     if (options.textPosition.toLowerCase().includes("left")) {
       descriptions[slideIndex - 1].animate(
         [
@@ -240,6 +243,7 @@
         }
       );
     }
+    // }
   };
 
   if (typeof window.myWindowGlobalLibraryName === "undefined") {

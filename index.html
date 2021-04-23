@@ -86,16 +86,13 @@
                 </div>
               </div>
               <div
-                style="margin-top: 30px;display: flex;justify-content: space-between;"
+                style="margin-top: 30px; margin-bottom: 10px; display: flex;justify-content: space-between;"
               >
                 <h3 style="margin: 0">Captain</h3>
-                <div id="colorPicker" style="margin-right: 10px">
-                  <input
-                    type="color"
-                    id="captainColor"
-                    onchange="changeCaptainColor(event)"
-                  />
-                </div>
+                <label class="switch" style="margin-right: 20px;">
+                  <input id="hasCaptain" type="checkbox" checked />
+                  <span class="slider"></span>
+                </label>
               </div>
               <div class="separate">
                 <label style="margin-right: 30px">Duration</label>
@@ -123,17 +120,24 @@
                   />
                 </div>
               </div>
+              <div class="separate">
+                <label style="margin-right: 30px">Color</label>
+                <div id="colorPicker" style="margin-right: 10px">
+                  <input
+                    type="color"
+                    id="captainColor"
+                    onchange="changeCaptainColor(event)"
+                  />
+                </div>
+              </div>
               <div
                 style="margin-top: 30px;display: flex;justify-content: space-between;"
               >
                 <h3 style="margin: 0">Description</h3>
-                <div id="colorPicker" style="margin-right: 10px">
-                  <input
-                    type="color"
-                    id="descriptionColor"
-                    onchange="changeDescriptionColor(event)"
-                  />
-                </div>
+                <label class="switch" style="margin-right: 20px;">
+                  <input id="hasDescription" type="checkbox" checked />
+                  <span class="slider"></span>
+                </label>
               </div>
               <div class="separate">
                 <label style="margin-right: 30px">Duration</label>
@@ -161,6 +165,16 @@
                   />
                 </div>
               </div>
+              <div class="separate">
+                <label style="margin-right: 30px">Color</label>
+                <div id="colorPicker" style="margin-right: 10px">
+                  <input
+                    type="color"
+                    id="descriptionColor"
+                    onchange="changeDescriptionColor(event)"
+                  />
+                </div>
+              </div>
               <h3 style="margin-top: 30px">Position</h3>
               <div class="separate">
                 <label style="margin-right: 30px">Text</label>
@@ -170,6 +184,19 @@
                   <option value="bottom">Bottom</option>
                   <option value="left">Left</option>
                   <option value="center">Center</option>
+                  <option value="topLeft">Top Left</option>
+                  <option value="topRight">Top Right</option>
+                  <option value="bottomLeft">Bottom Left</option>
+                  <option value="bottomRight">Bottom Right</option>
+                </select>
+              </div>
+              <div class="separate">
+                <label style="margin-right: 30px">Navigation</label>
+                <select id="navigationPosition">
+                  <option value="top">Top</option>
+                  <option value="right">Right</option>
+                  <option value="bottom">Bottom</option>
+                  <option value="left">Left</option>
                   <option value="topLeft">Top Left</option>
                   <option value="topRight">Top Right</option>
                   <option value="bottomLeft">Bottom Left</option>
