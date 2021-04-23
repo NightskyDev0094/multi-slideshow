@@ -67,7 +67,7 @@ function createContentList() {
     innerContent.style.display = "flex";
     innerContent.style.alignItems = "center";
     innerContent.style.cursor = "pointer";
-    innerContent.setAttribute("onclick", "changeItem(" + i + ", true)");
+    innerContent.setAttribute("onclick", "showContentOption(" + i + ")");
     contentItem.classList.add("contentItem");
 
     innerContent.appendChild(gridIcon);
@@ -80,46 +80,51 @@ function createContentList() {
 
   addBtn.classList.add("btn", "addBtn");
   addBtn.append("Add Element");
+  addBtn.setAttribute("onclick", "showContentOption(" + -1 + ")");
   sidebarContainer.appendChild(addBtn);
 }
 
-function changeItem(i, isChange) {
+function showContentOption(i) {
   document.querySelector(".tabbed").style.display = "none";
   document.querySelector(".contentOption").style.display = "block";
 
   // Create save button
   var saveBtn = document.createElement("button");
   saveBtn.classList.add("btn", "saveBtn");
-  if (isChange) {
+
+  if (i != -1) {
     saveBtn.setAttribute("onclick", "changeSlideShow(" + i + " )");
     saveBtn.append("Save");
   } else {
-    saveBtn.setAttribute("onclick", "addSlideShow()");
+    saveBtn.setAttribute("onclick", "addSlide()");
     saveBtn.append("Add");
   }
   document.querySelector(".contentOptionContainer").appendChild(saveBtn);
 
   // get seleted image info and put to input box
-  document.querySelector("#itemUrl").querySelector("input").value =
-    options.contents[i];
-  document.querySelector("#captainSetting").querySelector("input").value =
-    options.captains[i];
-  document.querySelector("#captainSetting").querySelectorAll("input")[1].value =
-    options.captainFontSizes[i];
+  if (i != -1) {
+    document.querySelector("#itemUrl").querySelector("input").value =
+      options.contents[i];
+    document.querySelector("#captainSetting").querySelector("input").value =
+      options.captains[i];
+    document
+      .querySelector("#captainSetting")
+      .querySelectorAll("input")[1].value = options.captainFontSizes[i];
 
-  if (options.fileType[i] == "image")
-    document.querySelector("#image").checked = true;
-  else document.querySelector("#other").checked = true;
+    if (options.fileType[i] == "image")
+      document.querySelector("#image").checked = true;
+    else document.querySelector("#other").checked = true;
 
-  document
-    .querySelector("#descriptionSetting")
-    .querySelector("textarea").value = "";
-  for (let j = 0; j < options.descriptions[i].length; j++)
     document
       .querySelector("#descriptionSetting")
-      .querySelector("textarea").value += options.descriptions[i][j] + "\n";
-  document.querySelector("#descriptionSetting").querySelector("input").value =
-    options.descritpionFontSizes[i];
+      .querySelector("textarea").value = "";
+    for (let j = 0; j < options.descriptions[i].length; j++)
+      document
+        .querySelector("#descriptionSetting")
+        .querySelector("textarea").value += options.descriptions[i][j] + "\n";
+    document.querySelector("#descriptionSetting").querySelector("input").value =
+      options.descritpionFontSizes[i];
+  }
 }
 
 function backToContent() {
@@ -169,4 +174,39 @@ function deleteSlide(i) {
 
   myWindowGlobalLibraryName.setSlideShowOptions(options);
   createContentList();
+}
+function addSlide() {
+  options.contents.push(
+    document.querySelector("#itemUrl").querySelector("input").value
+  );
+  options.captains.push(
+    document.querySelector("#captainSetting").querySelector("input").value
+  );
+  var captainFontSize = Number.parseInt(
+    document.querySelector("#captainSetting").querySelectorAll("input")[1].value
+  );
+  if (captainFontSize) options.captainFontSizes.push(captainFontSize);
+  else options.captainFontSizes.push(24);
+
+  if (document.querySelector("#image").checked) options.fileType.push("image");
+  else options.fileType.push("other");
+
+  options.descriptions.push([]);
+  var lines = document
+    .querySelector("#descriptionSetting")
+    .querySelector("textarea")
+    .value.split("\n");
+  for (let j = 0; j < lines.length; j++)
+    options.descriptions[options.descriptions.length - 1].push(lines[j]);
+
+  var descritpionFontSize = Number.parseInt(
+    document.querySelector("#descriptionSetting").querySelector("input").value
+  );
+  if (descritpionFontSize)
+    options.descritpionFontSizes.push(descritpionFontSize);
+  else options.descritpionFontSizes.push(15);
+
+  myWindowGlobalLibraryName.setSlideShowOptions(options);
+  createContentList();
+  backToContent();
 }
