@@ -5,6 +5,7 @@
     var options;
     var capainTimer;
     var descriptionTimer;
+    var autoPlayTimer;
 
     _multiSlideShow.setSlideShowOptions = function(values) {
       var slides = document.querySelectorAll(".slide");
@@ -34,9 +35,6 @@
 
       slideShow.innerHTML = "";
       panel.classList.add("panel");
-      // panel.style.height = "100%";
-      // panel.style.display = "flex";
-      // panel.style.position = "absolute";
 
       for (let i = 0; i < options.contents.length; i++) {
         var slide = document.createElement("div");
@@ -75,7 +73,6 @@
       }
 
       prev.classList.add("prev");
-      // prev.addEventListener('click', plusSlides(-1))
       prev.setAttribute("onclick", "plusSlides(-1)");
       prev.innerHTML = "&#10094;";
       next.classList.add("next");
@@ -89,15 +86,24 @@
       slideShow.appendChild(dotContatiner);
 
       fadeSlide(slideIndex);
+      autoPlay();
     };
 
     return _multiSlideShow;
   }
 
+  this.autoPlay = function() {
+    autoPlayTimer = setInterval(() => {
+      fadeSlide((slideIndex += 1));
+    }, 3000);
+  };
+
   // Click prev or push
   this.plusSlides = function(n) {
     clearTimeout(capainTimer);
     clearTimeout(descriptionTimer);
+    clearInterval(autoPlayTimer);
+    autoPlay();
     fadeSlide((slideIndex += n));
   };
 
@@ -105,6 +111,8 @@
   this.currentSlide = function(n) {
     clearTimeout(capainTimer);
     clearTimeout(descriptionTimer);
+    clearInterval(autoPlayTimer);
+    autoPlay();
     fadeSlide((slideIndex = n));
   };
 
