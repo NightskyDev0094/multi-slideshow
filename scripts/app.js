@@ -37,7 +37,7 @@ var options = {
 
 var slideIndex = 1;
 document.addEventListener("DOMContentLoaded", function(e) {
-  // myWindowGlobalLibraryName.setSlideShowOptions(options);
+  myWindowGlobalLibraryName.setSlideShowOptions(options);
   createContentList();
 });
 
