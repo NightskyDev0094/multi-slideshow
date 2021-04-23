@@ -25,7 +25,14 @@ var options = {
     ]
   ],
   descritpionFontSizes: [15, 15, 15],
-  duration: 3
+  autoPlay: true,
+  displayDuration: 3,
+  backgroundDuration: 1.5,
+  backgroundDelay: 0,
+  captainDuration: 1,
+  captainDelay: 0.5,
+  descriptionDuration: 1,
+  descriptionDelay: 0.5
 };
 
 var slideIndex = 1;

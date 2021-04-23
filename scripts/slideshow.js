@@ -93,9 +93,10 @@
   }
 
   this.autoPlay = function() {
-    autoPlayTimer = setInterval(() => {
-      fadeSlide((slideIndex += 1));
-    }, 3000);
+    if (options.autoPlay)
+      autoPlayTimer = setInterval(() => {
+        fadeSlide((slideIndex += 1));
+      }, options.displayDuration*1000);
   };
 
   // Click prev or push
@@ -134,11 +135,20 @@
     }
 
     // for (let i = 0; i < images.length; i++)
-    images[slideIndex - 1].animate({ opacity: [0.4, 1] }, 1500);
+    images[slideIndex - 1].animate(
+      { opacity: [0.4, 1] },
+      {
+        duration: options.backgroundDuration * 1000,
+        delay: options.backgroundDelay * 1000
+      }
+    );
     // for (let i = 0; i < captains.length; i++)
     captains[slideIndex - 1].animate(
       { opacity: [0, 1] },
-      { duration: 1000, delay: 500 }
+      {
+        duration: options.captainDuration * 1000,
+        delay: options.captainDelay * 1000
+      }
     );
     // for (let i = 0; i < descriptions.length; i++)
     descriptions[slideIndex - 1].animate(
@@ -147,7 +157,10 @@
         { transform: "translate(-100%, 0)" },
         { transform: "none" }
       ],
-      { duration: 1000, delay: 500 }
+      {
+        duration: options.descriptionDuration * 1000,
+        delay: options.descriptionDelay * 1000
+      }
     );
 
     for (i = 0; i < images.length; i++) {

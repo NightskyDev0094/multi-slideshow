@@ -18,8 +18,8 @@
       <div class="sidebar">
         <div class="tabbed">
           <input type="radio" id="tab1" name="css-tabs" />
-          <input type="radio" id="tab2" name="css-tabs" checked />
-          <input type="radio" id="tab3" name="css-tabs" />
+          <input type="radio" id="tab2" name="css-tabs" />
+          <input type="radio" id="tab3" name="css-tabs" checked />
 
           <ul class="tabs">
             <li class="tab"><label for="tab1">Effects</label></li>
@@ -32,7 +32,106 @@
             <div class="sidebarContainer"></div>
           </div>
 
-          <div class="tab-content"></div>
+          <div class="tab-content">
+            <div class="effectOptions">
+              <div class="separate" style=" margin-bottom: 30px">
+                <label style="margin-right: 30px">Enable Auto Slide</label>
+                <label class="switch" style="margin-right: 6px;">
+                  <input type="checkbox" checked />
+                  <span class="slider"></span>
+                </label>
+              </div>
+              <div class="separate">
+                <label style="margin-right: 30px"
+                  >Seconds to Display Each Slide
+                </label>
+                <div style="display: flex;">
+                  <input
+                    type="number"
+                    min="1"
+                    max="5"
+                    class="numberInput"
+                    onChange="this.value=Math.max(Math.min(this.value, 5), 1)"
+                  />
+                </div>
+              </div>
+              <h3 style="margin-top: 30px">Background</h3>
+              <div class="separate">
+                <label style="margin-right: 30px">Duration</label>
+                <div style="display: flex">
+                  <input
+                    type="number"
+                    min="0"
+                    max="5"
+                    class="numberInput"
+                    onChange="this.value=Math.max(Math.min(this.value, this.max), this.min)"
+                  />
+                </div>
+              </div>
+              <div class="separate">
+                <label style="margin-right: 30px">Delay</label>
+                <div style="display: flex">
+                  <input
+                    type="number"
+                    min="0"
+                    max="5"
+                    class="numberInput"
+                    onChange="this.value=Math.max(Math.min(this.value, this.max), this.min)"
+                  />
+                </div>
+              </div>
+              <h3 style="margin-top: 30px">Captain</h3>
+              <div class="separate">
+                <label style="margin-right: 30px">Duration</label>
+                <div style="display: flex">
+                  <input
+                    type="number"
+                    min="0"
+                    max="5"
+                    class="numberInput"
+                    onChange="this.value=Math.max(Math.min(this.value, this.max), this.min)"
+                  />
+                </div>
+              </div>
+              <div class="separate">
+                <label style="margin-right: 30px">Delay</label>
+                <div style="display: flex">
+                  <input
+                    type="number"
+                    min="0"
+                    max="5"
+                    class="numberInput"
+                    onChange="this.value=Math.max(Math.min(this.value, this.max), this.min)"
+                  />
+                </div>
+              </div>
+              <h3 style="margin-top: 30px">Description</h3>
+              <div class="separate">
+                <label style="margin-right: 30px">Duration</label>
+                <div style="display: flex">
+                  <input
+                    type="number"
+                    min="0"
+                    max="5"
+                    class="numberInput"
+                    onChange="this.value=Math.max(Math.min(this.value, this.max), this.min)"
+                  />
+                </div>
+              </div>
+              <div class="separate">
+                <label style="margin-right: 30px">Delay</label>
+                <div style="display: flex">
+                  <input
+                    type="number"
+                    min="0"
+                    max="5"
+                    class="numberInput"
+                    onChange="this.value=Math.max(Math.min(this.value, this.max), this.min)"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="contentOption">
           <div class="contentOptionToolbar">
