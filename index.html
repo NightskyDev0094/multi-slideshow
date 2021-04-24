@@ -19,14 +19,14 @@
       <div class="sidebar">
         <div class="tabbed" style="height: 100%">
           <input type="radio" class="tabRadio" id="tab1" name="css-tabs" />
-          <input type="radio" class="tabRadio" id="tab2" name="css-tabs" />
           <input
             type="radio"
             class="tabRadio"
-            id="tab3"
+            id="tab2"
             name="css-tabs"
             checked
           />
+          <input type="radio" class="tabRadio" id="tab3" name="css-tabs" />
 
           <ul class="tabs">
             <li class="tab"><label for="tab1">Effects</label></li>
@@ -170,6 +170,31 @@
                   <input id="hasDescription" type="checkbox" checked />
                   <span class="slider"></span>
                 </label>
+              </div>
+              <div
+                class="separate"
+                style="flex-direction: column; align-items: start"
+              >
+                <label>Font Family</label>
+                <select
+                  style="width: 100%; margin-top: 5px;"
+                  name="combobox"
+                  id="descriptionFontFamily"
+                  class="combobox"
+                ></select>
+              </div>
+              <div class="separate">
+                <label style="margin-right: 30px">Font Size</label>
+                <div style="display: flex">
+                  <input
+                    id="descritpionFontSize"
+                    type="number"
+                    min="10"
+                    max="50"
+                    class="numberInput"
+                    onChange="this.value=Math.max(Math.min(this.value, this.max), this.min)"
+                  />
+                </div>
               </div>
               <div class="separate">
                 <label style="margin-right: 30px">Duration</label>

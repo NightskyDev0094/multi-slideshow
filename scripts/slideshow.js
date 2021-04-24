@@ -31,6 +31,9 @@
       var dotContatiner = document.createElement("div");
       var img;
 
+      importFontFamily(options.captainFontFamily);
+      importFontFamily(options.descriptionFontFamily);
+
       var dotHover =
         ".dot:hover {background-color: " +
         options.navigationBackgroundColor +
@@ -79,11 +82,13 @@
         textArea.classList.add("textArea");
         textArea.classList.add(options.textPosition);
         captain.classList.add("captain");
-        captain.style.fontSize = options.captainFontSizes[i] + "px";
+        captain.style.fontSize = options.captainFontSize + "px";
+        captain.style.fontFamily = options.captainFontFamily;
         captain.append(options.captains[i]);
         captain.style.color = options.captainColor;
         description.classList.add("description");
-        description.style.fontSize = options.descritpionFontSizes[i] + "px";
+        description.style.fontSize = options.descritpionFontSize + "px";
+        description.style.fontFamily = options.descriptionFontFamily;
         description.style.color = options.descriptionColor;
 
         var sub = "";
@@ -138,6 +143,24 @@
 
     return _multiSlideShow;
   }
+
+  this.importFontFamily = function(font) {
+    // var fontFamily = this.options.captainFontFamily;
+    var fontFamily = font;
+    var fontUrl = `https://fonts.googleapis.com/css?family=${fontFamily.replace(
+      " ",
+      "+"
+    )}`;
+    var pos = fontFamily.indexOf(":");
+    if (pos > 0) {
+      fontFamily = fontFamily.substring(0, pos);
+    }
+    var link = document.createElement("link");
+    link.id = "myfontlink";
+    link.setAttribute("rel", "stylesheet");
+    link.setAttribute("href", fontUrl);
+    document.head.appendChild(link);
+  };
 
   this.autoPlay = function() {
     if (options.autoPlay) {

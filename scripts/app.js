@@ -6,9 +6,8 @@ var options = {
   ],
   fileType: ["image", "other", "image"],
   captains: ["1. Hello World", "2. Hello World", "3. Hello World"],
-  captainFontSizes: [24, 24, 24],
   captainFontSize: 24,
-  captainFontFamily: "Abel",
+  captainFontFamily: "Sofia",
   captainColor: "#ffffff",
   descriptions: [
     [
@@ -27,8 +26,8 @@ var options = {
       "Donec scelerisque ipsum diam, ac mattis orci pellentesque eget."
     ]
   ],
-  descritpionFontSizes: [15, 15, 15],
   descritpionFontSize: 15,
+  descriptionFontFamily: "Indie Flower",
   descriptionColor: "#dccccc",
   autoPlay: false,
   displayDuration: 3,
@@ -287,6 +286,8 @@ function getSlideEffectOffect() {
     "#descriptionDelay"
   ).value = this.options.descriptionDelay;
   document.querySelector("#captainColor").value = options.captainColor;
+  document.querySelector("#captainFontSize").value = options.captainFontSize;
+  document.querySelector("#descritpionFontSize").value = options.descritpionFontSize;
   document.querySelector("#descriptionColor").value = options.descriptionColor;
   document.querySelector("#textPosition").value = options.textPosition;
   document.querySelector("#navigationPosition").value =
@@ -320,13 +321,19 @@ function getSlideEffectOffect() {
   for (let i = 0; i < families.length; i++) {
     if (families[i].value == options.captainFontFamily) {
       document.querySelector("#captainFontFamily").selectedIndex = i;
-      return;
+      break;
     }
   }
 
-  document.querySelector(
-    "#captainFontFamily"
-  ).value = this.options.captainFontSize;
+  families = document
+    .querySelector("#descriptionFontFamily")
+    .querySelectorAll("option");
+  for (let i = 0; i < families.length; i++) {
+    if (families[i].value == options.descriptionFontFamily) {
+      document.querySelector("#descriptionFontFamily").selectedIndex = i;
+      break;
+    }
+  }
 
   var gridItems = document.querySelectorAll(".grid-item");
   for (let i = 0; i < gridItems.length; i++) {
@@ -355,6 +362,8 @@ function setEffectOption() {
     "#captainDuration"
   ).value;
   this.options.captainDelay = document.querySelector("#captainDelay").value;
+  options.captainFontSize = document.querySelector("#captainFontSize").value;
+  options.descritpionFontSize = document.querySelector("#descritpionFontSize").value;
   this.options.descriptionDuration = document.querySelector(
     "#descriptionDuration"
   ).value;
@@ -397,20 +406,23 @@ function setEffectOption() {
   this.options.captainFontFamily = document.querySelector(
     "#captainFontFamily"
   ).value;
-  var fontFamily = this.options.captainFontFamily;
-  var fontUrl = `https://fonts.googleapis.com/css?family=${fontFamily.replace(
-    " ",
-    "+"
-  )}`;
-  var pos = fontFamily.indexOf(":");
-  if (pos > 0) {
-    fontFamily = fontFamily.substring(0, pos);
-  }
-  var link = document.createElement("link");
-  link.id = "myfontlink";
-  link.setAttribute("rel", "stylesheet");
-  link.setAttribute("href", fontUrl);
-  document.head.appendChild(link);
+  this.options.descriptionFontFamily = document.querySelector(
+    "#descriptionFontFamily"
+  ).value;
+  // var fontFamily = this.options.captainFontFamily;
+  // var fontUrl = `https://fonts.googleapis.com/css?family=${fontFamily.replace(
+  //   " ",
+  //   "+"
+  // )}`;
+  // var pos = fontFamily.indexOf(":");
+  // if (pos > 0) {
+  //   fontFamily = fontFamily.substring(0, pos);
+  // }
+  // var link = document.createElement("link");
+  // link.id = "myfontlink";
+  // link.setAttribute("rel", "stylesheet");
+  // link.setAttribute("href", fontUrl);
+  // document.head.appendChild(link);
   // ---------------------------------------------------------------------------------------
 
   var gridItems = document.querySelectorAll(".grid-item");
