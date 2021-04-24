@@ -124,7 +124,6 @@
                 <input
                     type="color"
                     id="captainColor"
-                    onchange="changeCaptainColor(event)"
                   />
               </div>
             </div>
@@ -167,7 +166,6 @@
                 <input
                     type="color"
                     id="descriptionColor"
-                    onchange="changeDescriptionColor(event)"
                   />
               </div>
             </div>
@@ -189,7 +187,7 @@
             <div style="margin-top: 30px; margin-bottom: 10px; display: flex;justify-content: space-between;">
               <h3 style="margin: 0">Navigation</h3>
               <label class="switch" style="margin-right: 10px;">
-                <input id="hasDescription" type="checkbox" checked />
+                <input id="hasNavigation" type="checkbox" checked />
                 <span class="slider"></span>
               </label>
             </div>
@@ -228,7 +226,6 @@
                 <input
                     type="color"
                     id="navigationBackgroundColor"
-                    onchange="changeDescriptionColor(event)"
                     colorformat="rgba"
                   />
               </div>
@@ -240,7 +237,6 @@
                 <input
                     type="color"
                     id="navigationBorderColor"
-                    onchange="changeDescriptionColor(event)"
                   />
               </div>
             </div>
@@ -261,6 +257,38 @@
                 <input id="navigationSpace" class="range-slider__range" type="range" value="400" min="0" max="50" oninput="this.parentElement.children[1].innerHTML = this.value">
                 <span class="range-slider__value">0</span>
               </div>
+            </div>
+            <div style="margin-top: 30px; margin-bottom: 10px; display: flex;justify-content: space-between;">
+              <h3 style="margin: 0">Arrow</h3>
+              <label class="switch" style="margin-right: 10px;">
+                <input id="hasArrow" type="checkbox" checked />
+                <span class="slider"></span>
+              </label>
+            </div>
+            <div class="separate">
+              <label style="margin-right: 30px">Arrow Color</label>
+              <div id="colorPicker">
+                <input
+                    type="color"
+                    id="arrowColor"
+                  />
+              </div>
+            </div>
+            <div class="separate">
+              <label style="margin-right: 30px">Background Color</label>
+              <div>
+              <div id="colorPicker">
+                <input
+                    type="color"
+                    id="arrowBackgroundColor"
+                  />
+              </div>
+        
+              </div>
+            </div>
+
+            <div class="separate">
+              <label style="margin-right: 30px">Style</label>
             </div>
           </div>
           <div id="optionFooter" style="height: 8%; background-color: #e0e6ea; position: relative">

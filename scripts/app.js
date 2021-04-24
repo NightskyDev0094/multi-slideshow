@@ -38,12 +38,16 @@ var options = {
   textPosition: "left",
   navigationPosition: "bottom",
   hasCaptain: true,
-  hasDescription: false,
+  hasDescription: true,
+  hasNavigation: true,
   navigationBorderColor: "#ffffff",
   navigationBackgroundColor: "#c7c1c1",
   navigationDirection: "horizontal",
   navigationSize: 15,
   navigationSpace: 2,
+  hasArrow: true,
+  arrowColor: "#ffffff",
+  arrowBackgroundColor: "#000000"
 };
 
 var slideIndex = 1;
@@ -267,10 +271,19 @@ function getSlideEffectOffect() {
     document.querySelector("#horizontal").checked = true;
   else document.querySelector("#vertical").checked = true;
 
-  document.querySelector('#navigationSize').value = options.navigationSize;
-  document.querySelector('#navigationSize').parentElement.children[1].innerHTML = options.navigationSize;
-  document.querySelector('#navigationSpace').value = options.navigationSpace;
-  document.querySelector('#navigationSpace').parentElement.children[1].innerHTML = options.navigationSpace;
+  document.querySelector("#navigationSize").value = options.navigationSize;
+  document.querySelector(
+    "#navigationSize"
+  ).parentElement.children[1].innerHTML = options.navigationSize;
+  document.querySelector("#navigationSpace").value = options.navigationSpace;
+  document.querySelector(
+    "#navigationSpace"
+  ).parentElement.children[1].innerHTML = options.navigationSpace;
+  document.querySelector("#hasNavigation").value = options.hasNavigation;
+  document.querySelector("#hasArrow").value = options.hasArrow;
+  document.querySelector("#arrowColor").value = options.arrowColor;
+  document.querySelector("#arrowBackgroundColor").value =
+    options.arrowBackgroundColor;
 }
 
 function setEffectOption() {
@@ -296,6 +309,10 @@ function setEffectOption() {
   this.options.descriptionDelay = document.querySelector(
     "#descriptionDelay"
   ).value;
+  this.options.captainColor = document.querySelector("#captainColor").value;
+  this.options.descriptionColor = document.querySelector(
+    "#descriptionColor"
+  ).value;
   this.options.textPosition = document.querySelector("#textPosition").value;
   this.options.navigationPosition = document.querySelector(
     "#navigationPosition"
@@ -309,18 +326,20 @@ function setEffectOption() {
   this.options.navigationBorderColor = document.querySelector(
     "#navigationBorderColor"
   ).value;
-  this.options.navigationSize = this.document.querySelector('#navigationSize').value
-  this.options.navigationSpace = this.document.querySelector('#navigationSpace').value
+  this.options.navigationSize = this.document.querySelector(
+    "#navigationSize"
+  ).value;
+  this.options.navigationSpace = this.document.querySelector(
+    "#navigationSpace"
+  ).value;
+  this.options.hasNavigation = this.document.querySelector("#hasNavigation").checked;
+  this.options.hasArrow = this.document.querySelector("#hasArrow").checked;
+  this.options.arrowColor = this.document.querySelector("#arrowColor").value;
+  this.options.arrowBackgroundColor = this.document.querySelector(
+    "#arrowBackgroundColor"
+  ).value;
 
   document.querySelector("#tab2").checked = true;
-  console.log(options)
+  console.log(options);
   myWindowGlobalLibraryName.setSlideShowOptions(options);
-}
-
-function changeCaptainColor(event) {
-  options.captainColor = event.target.value;
-}
-
-function changeDescriptionColor(event) {
-  options.descriptionColor = event.target.value;
 }

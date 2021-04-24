@@ -4,9 +4,6 @@
     var _multiSlideShow = {};
     var options;
     this.waitCaptainTimer = 0;
-    // var capainTimer;
-    // var descriptionTimer;
-    // var autoPlayTimer;
 
     _multiSlideShow.setSlideShowOptions = function(values) {
       var slides = document.querySelectorAll(".slide");
@@ -41,10 +38,10 @@
         ";}";
       this.dotHoverStyle = document.createElement("style");
 
-      if (dotHoverStyle.styleSheet) {
-        dotHoverStyle.styleSheet.cssText = dotHover;
+      if (this.dotHoverStyle.styleSheet) {
+        this.dotHoverStyle.styleSheet.cssText = dotHover;
       } else {
-        dotHoverStyle.appendChild(document.createTextNode(dotHover));
+        this.dotHoverStyle.appendChild(document.createTextNode(dotHover));
       }
 
       var active = document.createElement("style");
@@ -55,6 +52,14 @@
         99 +
         ";}";
       document.getElementsByTagName("head")[0].appendChild(active);
+
+      var prevHover = document.createElement("style");
+      prevHover.type = "text/css";
+      prevHover.innerHTML =
+        ".prev:hover, .next:hover {background-color: " +
+        options.arrowBackgroundColor +
+        "cc;}";
+      document.getElementsByTagName("head")[0].appendChild(prevHover);
 
       slideShow.innerHTML = "";
       panel.classList.add("panel");
@@ -105,11 +110,13 @@
       }
 
       prev.classList.add("prev");
+      prev.style.color = options.arrowColor;
       prev.setAttribute("onclick", "plusSlides(-1)");
       prev.innerHTML = "&#10094;";
       next.classList.add("next");
+      next.style.color = options.arrowColor;
       next.setAttribute("onclick", "plusSlides(1)");
-      next.innerHTML = "&#10095;";
+      next.innerHTML = "&#10094;";
       dotContatiner.classList.add("dot-container");
       dotContatiner.style.display = "flex";
       console.log(options.navigationDirection);
@@ -118,9 +125,11 @@
       dotContatiner.classList.add(options.navigationPosition);
 
       slideShow.appendChild(panel);
-      slideShow.appendChild(prev);
-      slideShow.appendChild(next);
-      slideShow.appendChild(dotContatiner);
+      if (options.hasArrow) {
+        slideShow.appendChild(prev);
+        slideShow.appendChild(next);
+      }
+      if (options.hasNavigation) slideShow.appendChild(dotContatiner);
 
       fadeSlide(slideIndex);
       killTimer();
@@ -196,9 +205,11 @@
       captains[i].style.display = "none";
       descriptions[i].style.display = "none";
     }
-    for (i = 0; i < dots.length; i++) {
-      dots[i].className = dots[i].className.replace(" active", "");
-    }
+
+    if (options.hasNavigation)
+      for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+      }
     slides[slideIndex - 1].style.display = "block";
     images[slideIndex - 1].style.display = "block";
 
@@ -228,7 +239,7 @@
       }
     }
 
-    dots[slideIndex - 1].className += " active";
+    if (options.hasNavigation) dots[slideIndex - 1].className += " active";
   };
 
   this.setTextEffect = function(slideIndex, captains, descriptions) {
