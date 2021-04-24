@@ -47,11 +47,23 @@ var options = {
   navigationSpace: 2,
   hasArrow: true,
   arrowColor: "#ffffff",
-  arrowBackgroundColor: "#000000"
+  arrowBackgroundColor: "#000000",
+  arrowIcon: '<i class="fas fa-chevron-left" aria-hidden="true"></i>'
 };
 
 var slideIndex = 1;
 document.addEventListener("DOMContentLoaded", function(e) {
+  var gridItems = document.querySelectorAll(".grid-item");
+  for (let i = 0; i < gridItems.length; i++) {
+    console.log(gridItems[i].querySelector("i").outerHTML);
+    if (
+      gridItems[i]
+        .querySelector("i")
+        .outerHTML == options.arrowIcon
+    )
+      gridItems[i].classList.add("grid-item-active");
+  }
+
   myWindowGlobalLibraryName.setSlideShowOptions(options);
   createContentList();
 });
@@ -332,7 +344,9 @@ function setEffectOption() {
   this.options.navigationSpace = this.document.querySelector(
     "#navigationSpace"
   ).value;
-  this.options.hasNavigation = this.document.querySelector("#hasNavigation").checked;
+  this.options.hasNavigation = this.document.querySelector(
+    "#hasNavigation"
+  ).checked;
   this.options.hasArrow = this.document.querySelector("#hasArrow").checked;
   this.options.arrowColor = this.document.querySelector("#arrowColor").value;
   this.options.arrowBackgroundColor = this.document.querySelector(
@@ -342,4 +356,15 @@ function setEffectOption() {
   document.querySelector("#tab2").checked = true;
   console.log(options);
   myWindowGlobalLibraryName.setSlideShowOptions(options);
+}
+
+function selectIcon(item) {
+  var gridItem = document.querySelectorAll(".grid-item");
+
+  for (let i = 0; i < gridItem.length; i++) {
+    gridItem[i].classList.remove("grid-item-active");
+  }
+  item.classList.add("grid-item-active");
+
+  options.arrowIcon = item.querySelector("i");
 }
