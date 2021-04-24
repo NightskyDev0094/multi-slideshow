@@ -7,6 +7,8 @@ var options = {
   fileType: ["image", "other", "image"],
   captains: ["1. Hello World", "2. Hello World", "3. Hello World"],
   captainFontSizes: [24, 24, 24],
+  captainFontSize: 24,
+  captainFontFamily: "Abel",
   captainColor: "#ffffff",
   descriptions: [
     [
@@ -26,6 +28,7 @@ var options = {
     ]
   ],
   descritpionFontSizes: [15, 15, 15],
+  descritpionFontSize: 15,
   descriptionColor: "#dccccc",
   autoPlay: false,
   displayDuration: 3,
@@ -55,6 +58,31 @@ var slideIndex = 1;
 document.addEventListener("DOMContentLoaded", function(e) {
   myWindowGlobalLibraryName.setSlideShowOptions(options);
   createContentList();
+
+  // fetch(
+  //   "https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyBipcG_GYuR_AN_TP6SxzppJz9sWZxIJSQ"
+  // )
+  //   .then(res => res.json())
+  //   .then(out => {
+  //     console.log(out)
+  //     var fonts = out;
+  //     for (let i = 0; i < fonts.items.length; i++) {
+  //       console.log(fonts.items[i].family)
+  //     }
+  //   });
+  var json = $.getJSON(
+    "https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyBwIX97bVWr3-6AIUvGkcNnmFgirefZ6Sw",
+    function(data) {
+      $.each(data.items, function(index, font) {
+        $(".combobox").append(
+          $("<option></option>")
+            .attr("value", font.family)
+            .text(font.family)
+        );
+        // $('.google-fonts').append("'" + font.family + "' => array('title' => '" + font.family + "'),<br>")
+      });
+    }
+  );
 });
 
 function createContentList() {
@@ -286,6 +314,20 @@ function getSlideEffectOffect() {
   document.querySelector("#arrowBackgroundColor").value =
     options.arrowBackgroundColor;
 
+  var families = document
+    .querySelector("#captainFontFamily")
+    .querySelectorAll("option");
+  for (let i = 0; i < families.length; i++) {
+    if (families[i].value == options.captainFontFamily) {
+      document.querySelector("#captainFontFamily").selectedIndex = i;
+      return;
+    }
+  }
+
+  document.querySelector(
+    "#captainFontFamily"
+  ).value = this.options.captainFontSize;
+
   var gridItems = document.querySelectorAll(".grid-item");
   for (let i = 0; i < gridItems.length; i++) {
     gridItems[i].classList.remove("grid-item-active");
@@ -350,6 +392,26 @@ function setEffectOption() {
   this.options.arrowBackgroundColor = this.document.querySelector(
     "#arrowBackgroundColor"
   ).value;
+
+  // ---------------------------------------------------------------------------------------
+  this.options.captainFontFamily = document.querySelector(
+    "#captainFontFamily"
+  ).value;
+  var fontFamily = this.options.captainFontFamily;
+  var fontUrl = `https://fonts.googleapis.com/css?family=${fontFamily.replace(
+    " ",
+    "+"
+  )}`;
+  var pos = fontFamily.indexOf(":");
+  if (pos > 0) {
+    fontFamily = fontFamily.substring(0, pos);
+  }
+  var link = document.createElement("link");
+  link.id = "myfontlink";
+  link.setAttribute("rel", "stylesheet");
+  link.setAttribute("href", fontUrl);
+  document.head.appendChild(link);
+  // ---------------------------------------------------------------------------------------
 
   var gridItems = document.querySelectorAll(".grid-item");
 
