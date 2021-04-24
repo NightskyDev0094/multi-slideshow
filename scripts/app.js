@@ -38,7 +38,9 @@ var options = {
   textPosition: "left",
   navigationPosition: "bottom",
   hasCaptain: true,
-  hasDescription: false
+  hasDescription: false,
+  navigationBorderColor: '#ffffff',
+  navigationBackgroundColor: '#c7c1c1a3'
 };
 
 var slideIndex = 1;

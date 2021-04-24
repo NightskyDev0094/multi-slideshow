@@ -34,6 +34,26 @@
       var dotContatiner = document.createElement("div");
       var img;
 
+      var dotHover =
+        ".dot:hover {background-color: " +
+        options.navigationBackgroundColor +
+        ";}";
+      this.dotHoverStyle = document.createElement("style");
+
+      if (dotHoverStyle.styleSheet) {
+        dotHoverStyle.styleSheet.cssText = dotHover;
+      } else {
+        dotHoverStyle.appendChild(document.createTextNode(dotHover));
+      }
+
+      var active = document.createElement("style");
+      active.type = "text/css";
+      active.innerHTML =
+        ".active {background-color: " +
+        options.navigationBackgroundColor +
+        ";}";
+      document.getElementsByTagName("head")[0].appendChild(active);
+
       slideShow.innerHTML = "";
       panel.classList.add("panel");
 
@@ -67,6 +87,7 @@
 
         dot.classList.add("dot");
         dot.setAttribute("onclick", "currentSlide(" + (i + 1) + ")");
+        dot.appendChild(this.dotHoverStyle);
 
         textArea.appendChild(captain);
         textArea.appendChild(description);
