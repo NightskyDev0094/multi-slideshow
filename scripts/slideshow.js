@@ -117,11 +117,11 @@
       prev.classList.add("prev");
       prev.style.color = options.arrowColor;
       prev.setAttribute("onclick", "plusSlides(-1)");
-      prev.innerHTML = "&#10094;";
+      prev.innerHTML = options.arrowIcon;
       next.classList.add("next");
       next.style.color = options.arrowColor;
       next.setAttribute("onclick", "plusSlides(1)");
-      next.innerHTML = "&#10094;";
+      next.innerHTML = options.arrowIcon;
       dotContatiner.classList.add("dot-container");
       dotContatiner.style.display = "flex";
       if (options.navigationDirection == "vertical")

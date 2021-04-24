@@ -423,7 +423,6 @@ function setEffectOption() {
     if (gridItems[i].className.includes("grid-item-active"))
       options.arrowIcon = gridItems[i].querySelector("i").outerHTML;
   }
-
   for (let i = 0; i < gridItems.length; i++) {
     gridItems[i].classList.remove("grid-item-active");
   }
@@ -433,7 +432,7 @@ function setEffectOption() {
   }
 
   document.querySelector("#tab2").checked = true;
-  console.log(options, options.arrowIcon);
+  console.log(options);
   myWindowGlobalLibraryName.setSlideShowOptions(options);
 }
 
