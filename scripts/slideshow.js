@@ -124,7 +124,6 @@
       next.innerHTML = "&#10094;";
       dotContatiner.classList.add("dot-container");
       dotContatiner.style.display = "flex";
-      console.log(options.navigationDirection);
       if (options.navigationDirection == "vertical")
         dotContatiner.style.flexDirection = "column";
       dotContatiner.classList.add(options.navigationPosition);

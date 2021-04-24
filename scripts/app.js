@@ -58,17 +58,6 @@ document.addEventListener("DOMContentLoaded", function(e) {
   myWindowGlobalLibraryName.setSlideShowOptions(options);
   createContentList();
 
-  // fetch(
-  //   "https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyBipcG_GYuR_AN_TP6SxzppJz9sWZxIJSQ"
-  // )
-  //   .then(res => res.json())
-  //   .then(out => {
-  //     console.log(out)
-  //     var fonts = out;
-  //     for (let i = 0; i < fonts.items.length; i++) {
-  //       console.log(fonts.items[i].family)
-  //     }
-  //   });
   var json = $.getJSON(
     "https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyBwIX97bVWr3-6AIUvGkcNnmFgirefZ6Sw",
     function(data) {
@@ -287,7 +276,8 @@ function getSlideEffectOffect() {
   ).value = this.options.descriptionDelay;
   document.querySelector("#captainColor").value = options.captainColor;
   document.querySelector("#captainFontSize").value = options.captainFontSize;
-  document.querySelector("#descritpionFontSize").value = options.descritpionFontSize;
+  document.querySelector("#descritpionFontSize").value =
+    options.descritpionFontSize;
   document.querySelector("#descriptionColor").value = options.descriptionColor;
   document.querySelector("#textPosition").value = options.textPosition;
   document.querySelector("#navigationPosition").value =
@@ -363,7 +353,9 @@ function setEffectOption() {
   ).value;
   this.options.captainDelay = document.querySelector("#captainDelay").value;
   options.captainFontSize = document.querySelector("#captainFontSize").value;
-  options.descritpionFontSize = document.querySelector("#descritpionFontSize").value;
+  options.descritpionFontSize = document.querySelector(
+    "#descritpionFontSize"
+  ).value;
   this.options.descriptionDuration = document.querySelector(
     "#descriptionDuration"
   ).value;
@@ -429,7 +421,7 @@ function setEffectOption() {
 
   for (let i = 0; i < gridItems.length; i++) {
     if (gridItems[i].className.includes("grid-item-active"))
-      this.options.arrowIcon = gridItems[i].querySelector("i").outerHTML;
+      options.arrowIcon = gridItems[i].querySelector("i").outerHTML;
   }
 
   for (let i = 0; i < gridItems.length; i++) {
@@ -441,7 +433,7 @@ function setEffectOption() {
   }
 
   document.querySelector("#tab2").checked = true;
-  console.log(options);
+  console.log(options, options.arrowIcon);
   myWindowGlobalLibraryName.setSlideShowOptions(options);
 }
 
