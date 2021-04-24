@@ -59,10 +59,6 @@ iframe {
 
 .dot {
   cursor: pointer;
-  height: 15px;
-  width: 15px;
-  margin: 0 2px;
-  border: 2px solid white;
   box-sizing: border-box;
   background-color: transparent;
   border-radius: 50%;

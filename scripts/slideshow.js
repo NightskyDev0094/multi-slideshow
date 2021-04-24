@@ -37,6 +37,7 @@
       var dotHover =
         ".dot:hover {background-color: " +
         options.navigationBackgroundColor +
+        99 +
         ";}";
       this.dotHoverStyle = document.createElement("style");
 
@@ -51,6 +52,7 @@
       active.innerHTML =
         ".active {background-color: " +
         options.navigationBackgroundColor +
+        99 +
         ";}";
       document.getElementsByTagName("head")[0].appendChild(active);
 
@@ -86,6 +88,10 @@
         description.innerHTML = sub;
 
         dot.classList.add("dot");
+        dot.style.border = "2px solid " + options.navigationBorderColor;
+        dot.style.width = options.navigationSize + "px";
+        dot.style.height = options.navigationSize + "px";
+        dot.style.margin = "0px " + options.navigationSpace + "px";
         dot.setAttribute("onclick", "currentSlide(" + (i + 1) + ")");
         dot.appendChild(this.dotHoverStyle);
 
@@ -105,6 +111,10 @@
       next.setAttribute("onclick", "plusSlides(1)");
       next.innerHTML = "&#10095;";
       dotContatiner.classList.add("dot-container");
+      dotContatiner.style.display = "flex";
+      console.log(options.navigationDirection);
+      if (options.navigationDirection == "vertical")
+        dotContatiner.style.flexDirection = "column";
       dotContatiner.classList.add(options.navigationPosition);
 
       slideShow.appendChild(panel);

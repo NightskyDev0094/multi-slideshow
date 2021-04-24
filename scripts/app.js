@@ -39,8 +39,11 @@ var options = {
   navigationPosition: "bottom",
   hasCaptain: true,
   hasDescription: false,
-  navigationBorderColor: '#ffffff',
-  navigationBackgroundColor: '#c7c1c1a3'
+  navigationBorderColor: "#ffffff",
+  navigationBackgroundColor: "#c7c1c1",
+  navigationDirection: "horizontal",
+  navigationSize: 15,
+  navigationSpace: 2,
 };
 
 var slideIndex = 1;
@@ -255,6 +258,19 @@ function getSlideEffectOffect() {
   document.querySelector("#textPosition").value = options.textPosition;
   document.querySelector("#navigationPosition").value =
     options.navigationPosition;
+  document.querySelector("#navigationBackgroundColor").value =
+    options.navigationBackgroundColor;
+  document.querySelector("#navigationBorderColor").value =
+    options.navigationBorderColor;
+
+  if (options.navigationDirection == "horizontal")
+    document.querySelector("#horizontal").checked = true;
+  else document.querySelector("#vertical").checked = true;
+
+  document.querySelector('#navigationSize').value = options.navigationSize;
+  document.querySelector('#navigationSize').parentElement.children[1].innerHTML = options.navigationSize;
+  document.querySelector('#navigationSpace').value = options.navigationSpace;
+  document.querySelector('#navigationSpace').parentElement.children[1].innerHTML = options.navigationSpace;
 }
 
 function setEffectOption() {
@@ -284,8 +300,20 @@ function setEffectOption() {
   this.options.navigationPosition = document.querySelector(
     "#navigationPosition"
   ).value;
+  if (document.querySelector("#horizontal").checked)
+    this.options.navigationDirection = "horizontal";
+  else this.options.navigationDirection = "vertical";
+  this.options.navigationBackgroundColor = document.querySelector(
+    "#navigationBackgroundColor"
+  ).value;
+  this.options.navigationBorderColor = document.querySelector(
+    "#navigationBorderColor"
+  ).value;
+  this.options.navigationSize = this.document.querySelector('#navigationSize').value
+  this.options.navigationSpace = this.document.querySelector('#navigationSpace').value
 
   document.querySelector("#tab2").checked = true;
+  console.log(options)
   myWindowGlobalLibraryName.setSlideShowOptions(options);
 }
 

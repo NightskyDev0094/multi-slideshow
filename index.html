@@ -15,9 +15,9 @@
   <div class="body">
     <div class="sidebar">
       <div class="tabbed" style="height: 100%">
-        <input type="radio" id="tab1" name="css-tabs" />
-        <input type="radio" id="tab2" name="css-tabs" />
-        <input type="radio" id="tab3" name="css-tabs" checked />
+        <input type="radio" class="tabRadio" id="tab1" name="css-tabs" />
+        <input type="radio" class="tabRadio" id="tab2" name="css-tabs" />
+        <input type="radio" class="tabRadio" id="tab3" name="css-tabs" checked />
 
         <ul class="tabs">
           <li class="tab"><label for="tab1">Effects</label></li>
@@ -171,6 +171,7 @@
                   />
               </div>
             </div>
+
             <div style="margin-top: 30px; margin-bottom: 10px; display: flex;justify-content: space-between;">
               <h3 style="margin: 0">Text Position</h3>
               <select id="textPosition" style="margin-right: 10px;">
@@ -213,13 +214,52 @@
               </select>
             </div>
             <div class="separate">
-              <label style="margin-right: 30px">Color</label>
+              <label style="margin-right: 30px">Direction</label>
+              <div>
+                <input type="radio" id="horizontal" name="direction" value="horizontal">
+                <label for="horizontal">Horizontal</label><br>
+                <input type="radio" id="vertical" name="direction" value="vertical">
+                <label for="vertical">Vertical</label><br>
+              </div>
+            </div>
+            <div class="separate">
+              <label style="margin-right: 30px">Background Color</label>
               <div id="colorPicker">
                 <input
                     type="color"
-                    id="navigationColor"
+                    id="navigationBackgroundColor"
+                    onchange="changeDescriptionColor(event)"
+                    colorformat="rgba"
+                  />
+              </div>
+            </div>
+            <div class="separate">
+              <label style="margin-right: 30px">Border Color</label>
+
+              <div id="colorPicker">
+                <input
+                    type="color"
+                    id="navigationBorderColor"
                     onchange="changeDescriptionColor(event)"
                   />
+              </div>
+            </div>
+            <div class="separate">
+              <label style="margin-right: 30px">Size</label>
+            </div>
+            <div class="separate">
+              <div class="range-slider">
+                <input id="navigationSize" class="range-slider__range" type="range" value="400" min="10" max="30" oninput="this.parentElement.children[1].innerHTML = this.value">
+                <span class="range-slider__value">0</span>
+              </div>
+            </div>
+            <div class="separate">
+              <label style="margin-right: 30px">Space</label>
+            </div>
+            <div class="separate">
+              <div class="range-slider">
+                <input id="navigationSpace" class="range-slider__range" type="range" value="400" min="0" max="50" oninput="this.parentElement.children[1].innerHTML = this.value">
+                <span class="range-slider__value">0</span>
               </div>
             </div>
           </div>
