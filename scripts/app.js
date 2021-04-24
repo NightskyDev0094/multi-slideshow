@@ -53,17 +53,6 @@ var options = {
 
 var slideIndex = 1;
 document.addEventListener("DOMContentLoaded", function(e) {
-  var gridItems = document.querySelectorAll(".grid-item");
-  for (let i = 0; i < gridItems.length; i++) {
-    console.log(gridItems[i].querySelector("i").outerHTML);
-    if (
-      gridItems[i]
-        .querySelector("i")
-        .outerHTML == options.arrowIcon
-    )
-      gridItems[i].classList.add("grid-item-active");
-  }
-
   myWindowGlobalLibraryName.setSlideShowOptions(options);
   createContentList();
 });
@@ -296,6 +285,15 @@ function getSlideEffectOffect() {
   document.querySelector("#arrowColor").value = options.arrowColor;
   document.querySelector("#arrowBackgroundColor").value =
     options.arrowBackgroundColor;
+
+  var gridItems = document.querySelectorAll(".grid-item");
+  for (let i = 0; i < gridItems.length; i++) {
+    gridItems[i].classList.remove("grid-item-active");
+  }
+  for (let i = 0; i < gridItems.length; i++) {
+    if (gridItems[i].querySelector("i").outerHTML == options.arrowIcon)
+      gridItems[i].classList.add("grid-item-active");
+  }
 }
 
 function setEffectOption() {
@@ -353,6 +351,21 @@ function setEffectOption() {
     "#arrowBackgroundColor"
   ).value;
 
+  var gridItems = document.querySelectorAll(".grid-item");
+
+  for (let i = 0; i < gridItems.length; i++) {
+    if (gridItems[i].className.includes("grid-item-active"))
+      this.options.arrowIcon = gridItems[i].querySelector("i").outerHTML;
+  }
+
+  for (let i = 0; i < gridItems.length; i++) {
+    gridItems[i].classList.remove("grid-item-active");
+  }
+  for (let i = 0; i < gridItems.length; i++) {
+    if (gridItems[i].querySelector("i").outerHTML == options.arrowIcon)
+      gridItems[i].classList.add("grid-item-active");
+  }
+
   document.querySelector("#tab2").checked = true;
   console.log(options);
   myWindowGlobalLibraryName.setSlideShowOptions(options);
@@ -365,6 +378,4 @@ function selectIcon(item) {
     gridItem[i].classList.remove("grid-item-active");
   }
   item.classList.add("grid-item-active");
-
-  options.arrowIcon = item.querySelector("i");
 }

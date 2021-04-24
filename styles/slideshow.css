@@ -38,7 +38,7 @@ iframe {
 
 .next {
   right: 0;
-  transform: translate(0, -50%) rotate(180deg);
+  transform: translate(0, -50%) scale(-1, 1);
 }
 
 .prev {
@@ -67,7 +67,7 @@ iframe {
 
 .textArea {
   position: absolute;
-  padding: 45px;
+  padding: 50px;
 }
 
 .left {
