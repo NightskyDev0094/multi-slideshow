@@ -123,3 +123,35 @@ iframe {
 .description {
   padding-top: 5px;
 }
+/* -------------------------------------- transition ----------------------------------------- */
+
+.transitionContainer {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.transitionPanel {
+  width: 100%;
+  height: 100%;
+  display: block;
+  font-size: 0;
+  white-space: nowrap;
+  position: relative;
+}
+
+.transitionItem {
+  position: relative;
+  display: inline-block;
+  width: 70%;
+  height: 100%;
+}
+
+.transitionImageItem {
+  width: 100%;
+  height: 100%;
+  transform: scale(0.8);
+}
+
+/* ------------------------------------------------------------------------------------------- */
